@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
+
+h1 {
+    font-weight: normal;
+    padding: 30px 30px 0px 30px;
+}
+
+.subtitle {
+    padding: 20px 30px 0px 30px;
+}
+
+input {
+    padding: 14px 16px;
+    margin: 30px 0px 10px 0px;
+    width: 300px;
+    height: 50px;
+    font-size: 17px;
+}
+
+input[type=button] {
+    padding: 0;
+    background-color: #1877f2;
+    height: 40px;
+    width: 200px;
+    color: #fff;
+    font-size: 1rem;
+    border: 1px solid #000;
+    transition: 0.2s;
+    margin: 10px;
+    font-weight: bold;
+}
+
+input[type=button]:hover {
+    background-color: black;
+    width: 250px;
+}
+
+.btGerarNumero:hover {
+    width: 250px;
+    background-color: blue;
+}
+
+/* STYLE PARA REMOVER OS SELETORES DO INPUT NUMBER */ 
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+appearance: none;
+margin: 0;
+}
+
+.img {
+    width: 250px;
+    height: 250px;
+}
