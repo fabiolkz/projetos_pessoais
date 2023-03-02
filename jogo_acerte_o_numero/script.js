@@ -1,6 +1,6 @@
 
 let numeroSorteado = Math.floor((Math.random() * 11));
-let chances = 3;
+let chances = 5;
 
 
 const numeroSorte = () => {
