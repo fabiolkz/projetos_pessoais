@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="title">Insira a Nomenclatura para obter o Nome e o Código!</h1>
+    <input type="text" id="inText">
+    <div class="buttons">
+        <input type="button" id="btSearch" value="Procurar">
+        <input type="button" id="btClear" value="Limpar">
+    </div>
+
+    <div class="respostas">
+        <h1 class="outResposta1"></h1>
+        <h1 class="outResposta"></h1>
+        <h1 class="outResposta2"></h1>
+    </div>
+
+    <div class="lista-abreviacoes">
+        <table>
+            <thead>
+                <th colspan="4">Abreviações cadastradas</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JB</td>
+                    <td>JB30</td>
+                    <td>EX15</td>
+                    <td>EX30</td>
+                </tr>
+                <tr>
+                    <td>EXF</td>
+                    <td>EXV</td>
+                    <td>EPV</td>
+                    <td>A15</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>AP6</td>
+                    <td>AP</td>
+                    <td>AP30</td>
+                </tr>
+                <tr>
+                    <td>AP630</td>
+                    <td>AF</td>
+                    <td>AV</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>BP</td>
+                    <td>BF</td>
+                    <td>BV</td>
+                    <td>C</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="mensagem" style="display:none;">Abreviação Copiada!</div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
