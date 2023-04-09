@@ -9,6 +9,7 @@ let numeros = document.querySelector('.d-1-3');
 
 let etapaAtual = 0; 
 let numero = '';
+let votoBranco = true;
 
 const comecarEtapa = () => {
 
@@ -16,6 +17,7 @@ const comecarEtapa = () => {
 
     let numeroHTML = '';
     numero = '';
+    votoBranco = false;
 
     for( let i = 0; i < etapa.numeros; i++ ) { 
         if ( i === 0 ) {
@@ -86,7 +88,19 @@ const clicou = (n) => {
 }
 
 const branco = () => {
+    if ( numero === '' ) {
+        votoBranco = true;
 
+        seuVotoPara.style.display = 'block';
+        aviso.style.display = 'block';
+        numeros.innerHTML = '';
+        
+        descricao.style.display = 'flex';
+        descricao.style.alignItems = 'flex-start';
+        descricao.innerHTML = '<div class="aviso--grande pisca">VOTO EM BRANCO</div>';
+    } else {
+        alert('Para votar em branco TODOS OS CAMPOS devem estar VAZIOS!');
+    }
 }
 
 const corrige = () => {
@@ -95,6 +109,11 @@ const corrige = () => {
 
 const confirma = () => {
 
+    let etapa = etapas[etapaAtual];
+
+    if ( votoBranco === true ||  numero.length === etapa.numeros) {
+        alert('Voto Computado!');
+    }
 }
 
 comecarEtapa();
