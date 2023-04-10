@@ -10,6 +10,8 @@ let numeros = document.querySelector('.d-1-3');
 let etapaAtual = 0; 
 let numero = '';
 let votoBranco = true;
+let votos = [];
+let chegouNoFinal = false;
 
 const comecarEtapa = () => {
 
@@ -53,7 +55,12 @@ const atualizaInterface = () => {
 
         let fotosHTML = '';
         for(let i in candidato.fotos) { 
-            fotosHTML += `<div class='d-1-image'><img src='images/${candidato.fotos[i].url}' alt=''>${candidato.fotos[i].legenda}</div>`
+            if (candidato.fotos[i].small) {
+                fotosHTML += `<div class='d-1-image small'><img src='images/${candidato.fotos[i].url}' alt=''>${candidato.fotos[i].legenda}</div>`
+            } else {
+                fotosHTML += `<div class='d-1-image'><img src='images/${candidato.fotos[i].url}' alt=''>${candidato.fotos[i].legenda}</div>`
+            }
+            
         }
     
         lateral.innerHTML = fotosHTML;
@@ -65,14 +72,19 @@ const atualizaInterface = () => {
         descricao.innerHTML = '<div class="aviso--grande pisca">VOTO NULO</div>';
     }
 
-    console.log('Candidato', candidato);
-
 }
 
 const clicou = (n) => {
     let elNumero = document.querySelector('.numero.pisca');
 
+
+
     if(elNumero !== null) {
+
+        let audio_click = document.querySelector('#audio_click');
+
+        audio_click.play();
+
         elNumero.innerHTML = n;
         numero = `${numero}${n}`;
 
@@ -98,22 +110,52 @@ const branco = () => {
         descricao.style.display = 'flex';
         descricao.style.alignItems = 'flex-start';
         descricao.innerHTML = '<div class="aviso--grande pisca">VOTO EM BRANCO</div>';
-    } else {
-        alert('Para votar em branco TODOS OS CAMPOS devem estar VAZIOS!');
-    }
+    } 
 }
 
 const corrige = () => {
-    comecarEtapa();
+    if (!chegouNoFinal) {
+        comecarEtapa();
+    }
 }
 
 const confirma = () => {
 
-    let etapa = etapas[etapaAtual];
+    if(!chegouNoFinal) {
+        let etapa = etapas[etapaAtual];
 
-    if ( votoBranco === true ||  numero.length === etapa.numeros) {
-        alert('Voto Computado!');
+        let votoConfirmado = false;
+    
+        if ( votoBranco === true) {
+            votoConfirmado = true;
+            votos.push({
+                etapa: etapas[etapaAtual].titulo,
+                voto: 'branco'
+            });
+        } else if (numero.length === etapa.numeros) {
+            votoConfirmado = true;
+            votos.push({
+                etapa: etapas[etapaAtual].titulo, 
+                voto: numero
+            });
+        }
+    
+        if ( votoConfirmado ) { 
+            etapaAtual++;
+            if (etapas[etapaAtual] !== undefined) { 
+                comecarEtapa();
+            } else {
+
+                let audio_fim = document.querySelector('#audio_fim');
+
+                audio_fim.play();
+
+                document.querySelector('.tela').innerHTML = '<div class="aviso--gigante pisca">FIM</div>';
+                chegouNoFinal = true;
+            }
+        }
     }
+
 }
 
 comecarEtapa();
